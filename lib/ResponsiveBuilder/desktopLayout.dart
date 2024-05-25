@@ -14,7 +14,7 @@ class _DesktopLayoutState extends State<DesktopLayout> {
     return Scaffold(
       backgroundColor: Colors.deepPurple[200],
       appBar: AppBar(
-        title: Text("Desktop Layout"),
+        title: const Text("Desktop Layout"),
       ),
       body: SingleChildScrollView(
         child: Row(
@@ -24,16 +24,20 @@ class _DesktopLayoutState extends State<DesktopLayout> {
             Expanded(
               child: Column(
                 children: [
-                  Container(
-                    width: size.width / 1.7,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
-                      borderRadius: BorderRadius.circular(15),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Container(
+                      width: size.width,
+                      height: 400,
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                     ),
                   ),
                   SizedBox(
-                    width: size.width / 1.7,
+                    width: size.width,
                     height: size.height,
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -41,8 +45,8 @@ class _DesktopLayoutState extends State<DesktopLayout> {
                       itemBuilder: (context, index) {
                         return index == 0
                             ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 10),
                                 child: Container(
                                   height: 180,
                                   decoration: BoxDecoration(
@@ -98,8 +102,8 @@ class _DesktopLayoutState extends State<DesktopLayout> {
                                 ),
                               )
                             : Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 10),
                                 child: Container(
                                   alignment: Alignment.center,
                                   width: size.width / 1.7,
@@ -109,7 +113,7 @@ class _DesktopLayoutState extends State<DesktopLayout> {
                                     color: Colors.deepPurpleAccent[200],
                                   ),
                                   child: Text(
-                                    "${index}",
+                                    "$index",
                                     style: const TextStyle(
                                         fontSize: 14, color: Colors.white),
                                   ),
@@ -121,28 +125,29 @@ class _DesktopLayoutState extends State<DesktopLayout> {
                 ],
               ),
             ),
-            SizedBox(
-              width: size.width / 2.5,
-              height: size.height,
-              child: ListView.builder(
-                physics: AlwaysScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: size.width / 2.5,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
-                      borderRadius: BorderRadius.circular(12),
+            if (size.width > 500)
+              SizedBox(
+                width: 200,
+                height: size.height,
+                child: ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 10,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(top: 5.0, right: 10.0),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: size.width / 2.5,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text("$index"),
                     ),
-                    child: Text("$index"),
                   ),
                 ),
-              ),
-            )
+              )
           ],
         ),
       ),
